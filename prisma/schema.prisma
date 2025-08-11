@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/* we have installed two pkgs to run psql, prisma in the -D, && prisma/cli
+```sh
+# do this for the first time adding the .env with its psql connection string and prisma directory with its schema.prisma file
+bunx prisma init
+```
+
+to apply our scheam.prisma changes to the database, we do this
+
+```sh
+bunx prisma migrate dev
+```
+
+that'll generate a new dir named: migrations in the prisma dir
+tutor says, in prod, there's another command instead!!
+
+after being as
+model User {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  lastName String?
+}
+
+we can generate our TS types using the command
+
+```sh
+bunx prisma generate
+# I think the newer version got it with the prior command, that's what I got by reading
+bunx prisma --help
+```
+*/
+
+model User {
+  // singular, it'll become plural User => Users
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String
+  hash String
+
+  firstName String?
+  // String? as TS means optional
+  lastName String?
+}
+
+model Bookmark {
+  id Int @id @default(autoincrement())
+  updatedAt DateTime @updatedAt
+
+  title String
+  description String?
+  link String
+}
+
+/* There is a beautiful command in prisma for handling our db, which is:
+
+```sh
+bunx prisma studio
+```
+
+It'll open a new port defaults to 5555, with simplified interaction, useful in dev
+
+*/

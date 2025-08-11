@@ -29,17 +29,18 @@ export class AuthController {
 
   @Post('signup') // this is how to make it as a route with http methods
   signup() {
-    return "I'm signup"; // returned as plain text
+    // return "I'm signup"; // returned as plain text
     // so doing a post in postman to: http://localhost:3000/auth/signin
     // will return our msg!
     // in the header of X-Powered-By will be Express
+
+    // we'll use the service as for the best practices and recommendations
+    return this.authService.signup(); // we moved the logic to the service
   }
 
   @Post('signin')
   login() {
-    return {
-      msg: "I'm login", // returned as json data
-    };
+    return this.authService.login();
   }
 }
 
