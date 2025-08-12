@@ -6,7 +6,9 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  // output   = "../generated/prisma" // if you use this output,
+  // you have to update the service import @prisma/client to this new path
+  // ../../generated/prisma
 }
 
 datasource db {
@@ -51,7 +53,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String
+  email String @unique
   hash String
 
   firstName String?

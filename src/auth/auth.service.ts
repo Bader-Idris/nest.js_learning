@@ -7,20 +7,23 @@ export class AuthService {} // or its name
 */
 
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from '../prisma/prisma.service';
 // import { User, Bookmark } from "@prisma/client";
 
 @Injectable({})
 export class AuthService {
   test() {} // we can call this function in its controller inside the constructor as:
   // this.authService.test()
-  signup () {
+
+  constructor(private prisma: PrismaService) {}
+  signup() {
     return {
-      msg: "I have signed up"
-    }
+      msg: 'I have signed up',
+    };
   }
-  login () {
+  login() {
     return {
-      msg: "I have logged in"
-    }
+      msg: 'I have logged in',
+    };
   }
 }
