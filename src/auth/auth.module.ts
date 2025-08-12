@@ -4,10 +4,10 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [JwtModule.register({})],
   controllers: [AuthController],// added after creating the controller!
   providers: [AuthService],// this is after the service is created
 })
