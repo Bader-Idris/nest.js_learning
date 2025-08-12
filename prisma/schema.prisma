@@ -59,15 +59,24 @@ model User {
   firstName String?
   // String? as TS means optional
   lastName String?
+
+  bookmarks Bookmark[]
+  @@map("users") // this overrides it from singular to our plural new name, that can be any other name
 }
 
 model Bookmark {
   id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   title String
   description String?
   link String
+
+  userId Int // many `Bookmark`s belong to one `User`, this is the foreign key.
+  user User @relation(fields: [userId], references: [id]) // appearing to be a left join referring to the id of User schema
+
+  @@map("bookmarks")
 }
 
 /* There is a beautiful command in prisma for handling our db, which is:
