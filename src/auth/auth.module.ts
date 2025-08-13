@@ -5,11 +5,12 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from './strategy';
 
 @Module({
   imports: [JwtModule.register({})],
   controllers: [AuthController],// added after creating the controller!
-  providers: [AuthService],// this is after the service is created
+  providers: [AuthService, JwtStrategy],// this is after the service is created
 })
 // and then we create the class
 // and we have to export it
