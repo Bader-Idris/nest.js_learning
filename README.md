@@ -90,3 +90,27 @@ Check out a few resources that may come in handy when working with NestJS:
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+## Useful commands for the final version of the project
+
+open a new terminal for each one of these commands with [**ctrl + shift + `**] then you can move through current terminal with [**ctrl + pgUp/pgDown**]
+
+```sh
+# for dev:
+
+# terminal 1
+  clear; bun i ; prisma:dev:deploy ;bun run start:dev
+# terminal 2
+  docker exec -it psql psql -U postgres -d nest
+# terminal 3
+  bunx prisma studio
+
+# for testing:
+  bun test:e2e:watch
+  docker exec -it testing-psql psql -U postgres -d nest
+  bunx dotenv -e .env.test -- prisma studio
+
+  clear; bun db:test:restart ; bun test:e2e:watch
+```
+
+You can check other commands in the `package.json` scripts object
