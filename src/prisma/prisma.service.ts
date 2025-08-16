@@ -16,7 +16,9 @@ export class PrismaService extends PrismaClient {
   }
 
   cleanDb() {
+    // this is to be used for testing
     return this.$transaction([
+      // we start with bookmarks due to foreign key constraint, the transaction is critical here
       this.bookmark.deleteMany(),
       this.user.deleteMany(),
     ]);
