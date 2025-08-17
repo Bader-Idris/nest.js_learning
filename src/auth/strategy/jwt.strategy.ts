@@ -6,7 +6,8 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') { // we can name this default 'jwt' as a refresh token
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  // we can name this default 'jwt' as a refresh token
   constructor(
     config: ConfigService,
     private prisma: PrismaService,
@@ -31,6 +32,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') { // we can n
     }
 
     // Create a new object without the hash property
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { hash, ...userWithoutHash } = user;
 
     return userWithoutHash; // Return the new object

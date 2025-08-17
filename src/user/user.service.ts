@@ -16,6 +16,7 @@ export class UserService {
       },
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { hash, ...userWithoutHash } = user;
 
     return userWithoutHash;
